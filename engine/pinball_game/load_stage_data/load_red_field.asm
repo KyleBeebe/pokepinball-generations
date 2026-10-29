@@ -310,6 +310,7 @@ LoadBillboardStatusBarGraphics_RedField: ; 0x14282
 	ld de, vTilesSH tile $2e
 	ld bc, $0020
 	call FarCopyData
+	callba LoadCaughtOverlayBallGfx_DuringLoadStage
 	ret
 
 Func_142b3: ; 0x142b3

@@ -2408,6 +2408,7 @@ OAMDataPointers2: ; 0x55d7
 	dw OAMData_Politoad1
 	dw OAMData_Politoad2
 	dw OAMData_Politoad3
+	dw OAMData2_CaughtOverlay
 
 OAMData2_0: ; 0x56e1
 	db $20, $20, $9E, $04
@@ -3631,4 +3632,8 @@ OAMData_Politoad3: ;96
 	db $22, $18, $1e, $11
 	db $22, $10, $1c, $11
 	db $22, $08, $1a, $11
+	db $80 ; terminator
+
+OAMData2_CaughtOverlay: ; 151
+	db $00, $00, $3a, $06 ; OBJ palette 6, loaded with the regular poke ball colors
 	db $80 ; terminator

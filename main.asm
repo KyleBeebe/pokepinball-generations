@@ -81,6 +81,8 @@ INCLUDE "engine/pinball_game/load_stage_data/load_gengar_bonus.asm"
 INCLUDE "engine/pinball_game/object_collision/gengar_bonus_object_collision.asm"
 INCLUDE "engine/pinball_game/object_collision/gengar_bonus_resolve_collision.asm"
 INCLUDE "engine/pinball_game/draw_sprites/draw_gengar_bonus_sprites.asm"
+INCLUDE "engine/pinball_game/draw_sprites/draw_caught_mon_overlay.asm"
+INCLUDE "engine/pinball_game/evolution_selection_menu.asm"
 INCLUDE "engine/pinball_game/stage_init/init_mewtwo_bonus.asm"
 INCLUDE "engine/pinball_game/ball_init/ball_init_mewtwo_bonus.asm"
 INCLUDE "engine/pinball_game/load_stage_data/load_mewtwo_bonus.asm"
@@ -933,6 +935,11 @@ BreedingProgressIconGfx:
 
 CaughtPokeballGfx: ; 0xd8f60
 	INCBIN "gfx/stage/caught_pokeball.2bpp"
+
+CaughtOverlayBallGfx:
+; The number of balls left pokeball icon (stage base gfx tile $85) recolored for use as a
+; sprite, drawn over the catch 'em portrait when the current wild pokemon is already owned.
+	INCBIN "gfx/stage/caught_overlay_ball.2bpp"
 
 SECTION "bank36.3", ROMX
 

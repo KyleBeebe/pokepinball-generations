@@ -174,6 +174,12 @@ LoadMonNameIntoEvolutionSelectionList:
 ;        de = pokemon id (big endian)
 	push bc
 	push hl
+	push de
+	ld a, e
+	ldh [hFarCallTempE], a
+	callba AreAllEvolutionsOwned
+	pop de
+	push af ; carry set if every evolution is already owned in the pokedex
 	swap c ;c* 32, does wird things if c starts >15
 	sla c
 	ld b, $0
@@ -196,16 +202,21 @@ LoadMonNameIntoEvolutionSelectionList:
 	ld a, $81
 	ld [de], a
 	inc de
-	ld a, $81
 	ld [de], a
 	inc de
-	ld a, $81
 	ld [de], a
 	inc de
-	ld a, $81
 	ld [de], a ; loaded 4 spaces into de
 	inc de
 	call LoadMonNameIntoBottomMessageBufferList
+	pop af
+	jr nc, .loadBlankCharacterLoop
+	ld a, $81
+	ld [de], a
+	inc de
+	ld a, $85 ; pokeball icon (number of balls left)
+	ld [de], a
+	inc de
 .loadBlankCharacterLoop
 	ld a, e
 	and $1f
@@ -228,7 +239,7 @@ SelectPokemonToEvolveMenu:
 	ld [wCurSelectedPartyMonScrollOffset], a
 	ld [wPartySelectionCursorCounter], a
 .loop
-	call MoveEvolutionSelectionCursor
+	callba MoveEvolutionSelectionCursor
 	call ClearPersistentJoypadStates
 	call UpdateEvolutionSelectionList
 	rst AdvanceFrame
@@ -236,35 +247,6 @@ SelectPokemonToEvolveMenu:
 	bit BIT_A_BUTTON, a
 	jr z, .loop
 	lb de, $00, $01
-	call PlaySoundEffect
-	ret
-
-MoveEvolutionSelectionCursor:
-	ld a, [wPressedButtonsPersistent]
-	ld b, a
-	ld a, [wNumPartyMons]
-	ld c, a
-	ld a, [wCurSelectedPartyMon]
-	bit BIT_D_UP, b
-	jr z, .didntPressUp
-	and a
-	ret z
-	; move the cursor up
-	dec a
-	ld [wCurSelectedPartyMon], a
-	lb de, $00, $03
-	call PlaySoundEffect
-	ret
-
-.didntPressUp
-	bit BIT_D_DOWN, b
-	ret z
-	inc a
-	cp c
-	ret z
-	; move the cursor down
-	ld [wCurSelectedPartyMon], a
-	lb de, $00, $03
 	call PlaySoundEffect
 	ret
 

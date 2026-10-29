@@ -20,6 +20,7 @@ DrawSpritesRedFieldBottom: ; 0x1757e
 	call DrawPikachuSavers_RedStage
 	callba DrawFlippers
 	call DrawPinball
+	callba DrawCaughtMonOverlay
 	call DrawEvolutionIndicatorArrows_RedFieldBottom
 	call DrawEvolutionTrinket_RedFieldBottom
 	call DrawSlotGlow_RedField

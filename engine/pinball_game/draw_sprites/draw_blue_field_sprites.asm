@@ -18,6 +18,7 @@ DrawSpritesBlueFieldBottom: ; 0x1f35a
 	call DrawPikachuSavers_BlueStage
 	callba DrawFlippers
 	callba DrawPinball
+	callba DrawCaughtMonOverlay
 	call DrawEvolutionIndicatorArrows_BlueFieldBottom
 	call DrawEvolutionTrinket_BlueFieldBottom
 	call DrawSlotGlow_BlueField

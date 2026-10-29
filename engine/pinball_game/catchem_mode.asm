@@ -1400,6 +1400,7 @@ Func_108f5: ; 0x108f5
 	ld de, vTilesOB tile $38
 	ld bc, $0020
 	call LoadVRAMData
+	callba LoadCaughtOverlayBallGfx
 	ld hl, BlankSaverSpaceTileDataRedField
 	ld a, BANK(BlankSaverSpaceTileDataRedField)
 	call QueueGraphicsToLoad
@@ -1626,6 +1627,7 @@ Func_109fc: ; 0x109fc
 	ld de, vTilesOB tile $38
 	ld bc, $0020
 	call LoadVRAMData
+	callba LoadCaughtOverlayBallGfx
 	ld hl, BlankSaverSpaceTileDataBlueField
 	ld a, BANK(BlankSaverSpaceTileDataBlueField)
 	call QueueGraphicsToLoad
