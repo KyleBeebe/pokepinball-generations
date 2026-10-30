@@ -294,7 +294,7 @@ LoadBillboardStatusBarGraphics_RedField: ; 0x14282
 	ld a, [wNumMonHits]
 	and a
 	call nz, Func_142b3
-	ret
+	jr .loadCaughtOverlayGfx
 
 .asm_14296
 	cp SPECIAL_MODE_EVOLUTION
@@ -310,6 +310,7 @@ LoadBillboardStatusBarGraphics_RedField: ; 0x14282
 	ld de, vTilesSH tile $2e
 	ld bc, $0020
 	call FarCopyData
+.loadCaughtOverlayGfx
 	callba LoadCaughtOverlayBallGfx_DuringLoadStage
 	ret
 
