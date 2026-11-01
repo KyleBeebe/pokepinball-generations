@@ -782,6 +782,8 @@ LoadShakeBallGfx: ; 0x104e2
 	ld de, vTilesOB tile $38
 	ld bc, $0040
 	call LoadVRAMData
+	xor a
+	ld [wCaughtOverlayGfxLoaded], a ; shake gfx overlaps the caught overlay tile
 	ret
 
 LoadShakeBallGfx_DuringLoadStage:
@@ -804,6 +806,8 @@ LoadShakeBallGfx_DuringLoadStage:
 	ld de, vTilesOB tile $38
 	ld bc, $0040
 	call FarCopyData
+	xor a
+	ld [wCaughtOverlayGfxLoaded], a ; shake gfx overlaps the caught overlay tile
 	ret
 
 BallShakeGfxPointers:

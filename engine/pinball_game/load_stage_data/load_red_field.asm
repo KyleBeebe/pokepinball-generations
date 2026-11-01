@@ -285,6 +285,8 @@ LoadEvolutionTrinketGfx_RedField:
 	ret
 
 LoadBillboardStatusBarGraphics_RedField: ; 0x14282
+	xor a
+	ld [wCaughtOverlayGfxLoaded], a ; stage load rewrites VRAM
 	ld a, [wInSpecialMode]
 	and a
 	jr z, .asm_1429e

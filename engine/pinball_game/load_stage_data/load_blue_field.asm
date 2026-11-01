@@ -336,6 +336,8 @@ LoadEvolutionTrinketGfx_BlueField:
 	ret
 
 LoadBillboardStatusBarGraphics_BlueField: ; 0x1c43c
+	xor a
+	ld [wCaughtOverlayGfxLoaded], a ; stage load rewrites VRAM
 	ld a, [wInSpecialMode]
 	and a
 	jr z, .asm_1c458

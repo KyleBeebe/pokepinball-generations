@@ -92,3 +92,13 @@ AreAllEvolutionsOwned:
 .notAllOwned
 	and a
 	ret
+
+LoadEvolutionListPokeballGfx:
+; Text char $85 is shared with the special chars ('x', '!', '`'), which may have overwritten
+; the pokeball icon, so reload it.
+	ld a, BANK(StageRedFieldTopStatusBarSymbolsGfx_GameBoyColor)
+	ld hl, StageRedFieldTopStatusBarSymbolsGfx_GameBoyColor + $50
+	ld de, vTilesSH tile $05
+	ld bc, $0010
+	call LoadVRAMData
+	ret

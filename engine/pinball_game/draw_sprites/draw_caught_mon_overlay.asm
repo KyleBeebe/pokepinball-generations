@@ -22,6 +22,9 @@ DrawCaughtMonOverlay:
 	add hl, bc
 	bit 1, [hl] ; owned flag, see SetPokemonOwnedFlag
 	ret z
+	ld a, [wCaughtOverlayGfxLoaded]
+	and a
+	call z, LoadCaughtOverlayBallGfx ; tile was overwritten, e.g. by the ball shake gfx
 	ld a, $66
 	ld hl, hSCX
 	sub [hl]
@@ -41,6 +44,8 @@ LoadCaughtOverlayBallGfx:
 	ld de, vTilesOB tile $3a
 	ld bc, $0020
 	call LoadVRAMData
+	ld a, $1
+	ld [wCaughtOverlayGfxLoaded], a
 	ldh a, [hGameBoyColorFlag]
 	and a
 	ret z
@@ -58,6 +63,8 @@ LoadCaughtOverlayBallGfx_DuringLoadStage:
 	ld de, vTilesOB tile $3a
 	ld bc, $0020
 	call FarCopyData
+	ld a, $1
+	ld [wCaughtOverlayGfxLoaded], a
 	ldh a, [hGameBoyColorFlag]
 	and a
 	ret z

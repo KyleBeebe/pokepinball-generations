@@ -839,6 +839,11 @@ wCapturingMon:: ; 0xd5f3
 ; Set to 1 when the capturing animation starts.
 	ds $1
 
+wCaughtOverlayGfxLoaded::
+; Nonzero while the caught overlay pokeball tile is intact in VRAM. Cleared whenever something
+; may have overwritten it (stage loads, ball shake gfx), so it gets reloaded before drawing.
+	ds $1
+
 wBallCaptureAnimation:: ; 0xd5f4
 	animation wBallCaptureAnimation
 

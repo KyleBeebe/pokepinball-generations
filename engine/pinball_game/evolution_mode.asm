@@ -135,6 +135,7 @@ InitEvolutionSelectionMenu:
 	jr nz, .clearLoop
 	ld hl, wPartyMons
 	call LoadMonNamesIntoEvolutionSelectionList
+	callba LoadEvolutionListPokeballGfx
 	ld a, BANK(InGameMenuSymbolsGfx)
 	ld hl, InGameMenuSymbolsGfx + $50
 	ld de, vTilesSH tile $08
